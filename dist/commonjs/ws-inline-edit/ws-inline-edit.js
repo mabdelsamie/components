@@ -109,7 +109,11 @@ var WSInlineEdit = exports.WSInlineEdit = function (_Component) {
   }, {
     key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(props) {
-      this.setState(this.createState(props));
+      var _this2 = this;
+
+      this.setState(this.createState(props), function () {
+        _this2.resizeInput();
+      });
     }
   }, {
     key: 'componentWillUnmount',
@@ -175,8 +179,14 @@ var WSInlineEdit = exports.WSInlineEdit = function (_Component) {
       var calculator = document.createElement('div');
       calculator.style.fontSize = style.fontSize || '16px';
       calculator.style.lineHeight = style.lineHeight || '16px';
-      calculator.style.margin = style.margin;
-      calculator.style.padding = style.padding;
+      calculator.style.marginTop = style.marginTop;
+      calculator.style.marginLeft = style.marginLeft;
+      calculator.style.marginRight = style.marginRight;
+      calculator.style.marginBottom = style.marginBottom;
+      calculator.style.paddingTop = style.paddingTop;
+      calculator.style.paddingLeft = style.paddingLeft;
+      calculator.style.paddingRight = style.paddingRight;
+      calculator.style.paddingBottom = style.paddingBottom;
       calculator.style.visibility = 'hidden';
       calculator.style.position = 'absolute';
       calculator.style.top = '-1000px';
@@ -189,7 +199,7 @@ var WSInlineEdit = exports.WSInlineEdit = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var _state = this.state,
           isEditing = _state.isEditing,
@@ -210,7 +220,7 @@ var WSInlineEdit = exports.WSInlineEdit = function (_Component) {
       return _imports.React.createElement(
         'div',
         { className: classes, ref: function ref(element) {
-            _this2.element = element;
+            _this3.element = element;
           } },
         _imports.React.createElement(
           'div',
@@ -219,7 +229,7 @@ var WSInlineEdit = exports.WSInlineEdit = function (_Component) {
             type: 'text',
             className: !isValid ? 'is-invalid' : '',
             ref: function ref(element) {
-              _this2.input = element;
+              _this3.input = element;
             },
             value: inputValue
           }),
