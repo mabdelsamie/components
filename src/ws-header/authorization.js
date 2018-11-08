@@ -78,8 +78,8 @@ export class Authorization {
       ['state', this.createAndRememberUUID()],
       ['response_type', 'token']
     ]);
-
-    window.location.href = `${loginUrl}?${query}`;
+    //give enough time for the storage to save the new state before redirect
+    timeout(()=>{window.location.href = `${loginUrl}?${query}`},10);
   }
 
   /**
